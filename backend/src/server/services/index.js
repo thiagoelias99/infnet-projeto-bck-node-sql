@@ -2,8 +2,10 @@
 
 const EmpregadoService = require("./Empregado");
 const DepartamentoService = require("./Departamento");
+const AlunoService = require("./Aluno");
 
 module.exports = {
     EmpregadoService,
-    DepartamentoService
+    DepartamentoService,
+    AlunoService
 };
