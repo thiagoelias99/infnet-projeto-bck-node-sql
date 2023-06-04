@@ -14,4 +14,11 @@ router.route(`${path}/:id`)
     .get(CursoController.getByUuid)
     .put(Validation.CursoValidation.put, CursoController.put)
     .delete(CursoController.del);
+
+router.route(`${path}/:id/subscribe`)
+    .patch(Validation.ComunValidation.reqParams, CursoController.subscribe);
+
+router.route(`${path}/:id/unsubscribe`)
+    .patch(Validation.ComunValidation.reqParams, CursoController.unsubscribe);
+
 module.exports = router;
