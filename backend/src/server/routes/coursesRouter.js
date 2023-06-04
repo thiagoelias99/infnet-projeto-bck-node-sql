@@ -1,24 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-const { Validation } = require("../middlewares");
+const { RequestValidator } = require("../middlewares");
 const { CourseController } = require("../controllers");
 const path = "/courses"
 
 router.route(path)
-    .post(Validation.CourseValidation.post, CourseController.post)
+    .post(RequestValidator.body, CourseController.post)
     .get(CourseController.getAll);
 
 router.route(`${path}/:uuid`)
-    .all(Validation.ComunValidation.reqParams)
+    .all(RequestValidator.params)
     .get(CourseController.getByUuid)
-    .put(Validation.CourseValidation.put, CourseController.put)
+    .put(RequestValidator.body, CourseController.put)
     .delete(CourseController.del);
 
 router.route(`${path}/:uuid/subscribe`)
-    .patch(Validation.ComunValidation.reqParams, CourseController.subscribe);
+    .patch(RequestValidator.params, CourseController.subscribe);
 
 router.route(`${path}/:uuid/unsubscribe`)
-    .patch(Validation.ComunValidation.reqParams, CourseController.unsubscribe);
+    .patch(RequestValidator.params, CourseController.unsubscribe);
 
 module.exports = router;

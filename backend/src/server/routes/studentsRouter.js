@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const { Validation } = require("../middlewares");
+const { RequestValidator } = require("../middlewares");
 const { StudentController } = require("../controllers");
 const path = "/students"
 
 router.route(path)
-    .post(Validation.StudentValidation.post, StudentController.post)
+    .post(RequestValidator.body, StudentController.post)
     .get(StudentController.getAll);
 
 router.route(`${path}/:uuid`)
-    .all(Validation.ComunValidation.reqParams)
+    .all(RequestValidator.params)
     .get(StudentController.getByUuid)
-    .put(Validation.StudentValidation.put, StudentController.put)
+    .put(RequestValidator.body, StudentController.put)
     .delete(StudentController.del);
 module.exports = router;

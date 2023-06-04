@@ -1,9 +1,9 @@
-//Para agrupar middlewares
+//To group middlewares
 
-const Validation = require("./Validation");
+const RequestValidator = require("./RequestValidator");
 const errorHandler = require("./ErrorHandler");
 
 module.exports = {
-    Validation,
+    RequestValidator,
     errorHandler
 };
