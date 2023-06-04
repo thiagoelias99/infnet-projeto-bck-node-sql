@@ -1,11 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { AlunoService } = require("../../services");
+const { StudentServices } = require("../../services");
 
 const post = async (req, res, next) => {
     try {
-        await AlunoService.deletar(req.params.id);
-        res.status(StatusCodes.NO_CONTENT).send();
+        const result = await StudentServices.register(req.body);
+        res.status(StatusCodes.OK).json({ uuid: result });
     } catch (error) {
         next(error);
     }

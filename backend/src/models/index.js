@@ -1,13 +1,9 @@
-const Empregado = require("./Empregado")
-const Aluno = require("./Aluno")
+const Student = require("./Student")
 const Curso = require("./Curso")
-const Departamento = require("./Departamento")
 const ReqParams = require("./ReqParams")
 
 module.exports = {
-    Empregado,
-    Departamento,
-    Aluno,
+    Student,
     Curso,
     ReqParams
 }

@@ -1,4 +1,4 @@
-const listarTodos = async () => {
+const listAll = async () => {
     return ([
         {
             uuid: "564s6ad5",
@@ -21,4 +21,4 @@ const listarTodos = async () => {
     ])
 };
 
-module.exports = listarTodos;
+module.exports = listAll;

@@ -1,5 +1,5 @@
-const retornarPorUUid = async () => {
-    return ([
+const selectByUuid = async (uuid) => {
+    return (
         {
             uuid: "564s6ad5",
             nome: "Aluno 1",
@@ -15,8 +15,8 @@ const retornarPorUUid = async () => {
                     duracao: 12
                 }
             ]
-        },
-    ])
+        }
+    );
 };
 
-module.exports = retornarPorUUid;
+module.exports = selectByUuid;

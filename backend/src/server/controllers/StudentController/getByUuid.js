@@ -1,10 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { AlunoService } = require("../../services");
+const { StudentServices } = require("../../services");
 
 const getByUuid = async (req, res, next) => {
     try {
-        const result = await AlunoService.retornarPorUUid(req.params.id);
+        const result = await StudentServices.selectByUuid(req.params.uuid);
 
         res.status(StatusCodes.OK).json(result);
     } catch (error) {

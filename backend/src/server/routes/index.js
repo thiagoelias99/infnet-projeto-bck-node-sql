@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const AlunosRoutes = require("./alunos")
+const StudentsRouter = require("./studentsRouter")
 const CursosRoutes = require("./cursos")
 const Route404 = require("./404")
 const WelcomeRoute = require("./welcome")
 
 router.use(WelcomeRoute);
-router.use(AlunosRoutes);
+router.use(StudentsRouter);
 router.use(CursosRoutes);
 router.use(Route404);
 

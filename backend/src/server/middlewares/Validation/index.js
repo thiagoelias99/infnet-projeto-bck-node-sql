@@ -1,11 +1,11 @@
 //Para agrupar middlewares de Validação
 
 const ComunValidation = require("./comun");
-const AlunoValidation = require("./aluno");
+const StudentValidation = require("./StudentValidation");
 const CursoValidation = require("./curso");
 
 module.exports = {
     ComunValidation,
-    AlunoValidation,
+    StudentValidation,
     CursoValidation
 };

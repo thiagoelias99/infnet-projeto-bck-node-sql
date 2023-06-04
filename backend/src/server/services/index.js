@@ -1,9 +1,9 @@
 //Para agrupar services
 
-const AlunoService = require("./Aluno");
+const StudentServices = require("./StudentServices");
 const CursoService = require("./Curso");
 
 module.exports = {
-    AlunoService,
+    StudentServices,
     CursoService
 };

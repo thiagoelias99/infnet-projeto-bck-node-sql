@@ -1,15 +1,15 @@
-//Para agrupar funções do controller
+//To group controller functions
 
 const post = require("./post");
 const getAll = require("./getAll");
 const getByUuid = require("./getByUuid");
-const del = require("./del");
 const put = require("./put");
+const del = require("./del");
 
 module.exports = {
     post,
     getAll,
     getByUuid,
-    del,
-    put
+    put,
+    del
 };
