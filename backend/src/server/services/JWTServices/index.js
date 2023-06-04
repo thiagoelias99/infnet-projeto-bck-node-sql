@@ -3,9 +3,8 @@ const jwt = require("jsonwebtoken");
 const { JWTError } = require("../../../errors")
 
 const sign = (data) => {
-    if (!process.env.JWT_SECRET) throw new JWTError("JWT_SECRET not found in .env");
-    if (!process.env.JWT_EXPIRATION) throw new JWTError("JWT_EXPIRATION not found in .env");
-    console.log(process.env.JWT_EXPIRATION)
+    if (!process.env.JWT_SECRET) throw new Error("JWT_SECRET not found in .env");
+    // if (!process.env.JWT_EXPIRATION) throw new Error("JWT_EXPIRATION not found in .env");
     return jwt.sign(data, process.env.JWT_SECRET);
 };
 
