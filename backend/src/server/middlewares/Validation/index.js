@@ -2,10 +2,10 @@
 
 const ComunValidation = require("./comun");
 const StudentValidation = require("./StudentValidation");
-const CursoValidation = require("./curso");
+const CourseValidation = require("./CourseValidation");
 
 module.exports = {
     ComunValidation,
     StudentValidation,
-    CursoValidation
+    CourseValidation
 };

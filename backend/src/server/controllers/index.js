@@ -1,9 +1,9 @@
 //Para agrupar controllers
 
 const StudentController = require("./StudentController");
-const CursoController = require("./curso");
+const CourseController = require("./CourseController");
 
 module.exports = {
     StudentController,
-    CursoController,
+    CourseController,
 };

@@ -1,9 +1,9 @@
 const Student = require("./Student")
-const Curso = require("./Curso")
+const Course = require("./Course")
 const ReqParams = require("./ReqParams")
 
 module.exports = {
     Student,
-    Curso,
+    Course,
     ReqParams
 }

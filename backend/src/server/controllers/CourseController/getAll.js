@@ -1,10 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { CursoService } = require("../../services");
+const { CourseServices } = require("../../services");
 
 const getAll = async (req, res, next) => {
     try {
-        const result = await CursoService.listarTodos(req.body);
+        const result = await CourseServices.listAll();
 
         res.status(StatusCodes.OK).json(result);
     } catch (error) {

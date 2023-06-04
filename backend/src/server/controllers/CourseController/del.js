@@ -1,14 +1,14 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { CursoService } = require("../../services");
+const { CourseServices } = require("../../services");
 
-const post = async (req, res, next) => {
+const del = async (req, res, next) => {
     try {
-        await CursoService.deletar(req.params.id);
+        await CourseServices.remove(req.params.uuid);
         res.status(StatusCodes.NO_CONTENT).send();
     } catch (error) {
         next(error);
     }
 };
 
-module.exports = post;
+module.exports = del;

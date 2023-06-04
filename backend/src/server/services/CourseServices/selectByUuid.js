@@ -1,4 +1,4 @@
-const retornarPorUUid = async (uuid) => {
+const selectByUuid = async (uuid) => {
     return (
         {
             uuid: "sfdgsfd",
@@ -19,4 +19,4 @@ const retornarPorUUid = async (uuid) => {
     )
 };
 
-module.exports = retornarPorUUid;
+module.exports = selectByUuid;

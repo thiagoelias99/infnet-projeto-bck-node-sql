@@ -1,10 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { CursoService } = require("../../services");
+const { CourseServices } = require("../../services");
 
 const put = async (req, res, next) => {
     try {
-        await CursoService.atualizar(req.params.id, req.body);
+        await CourseServices.updateByUuid(req.params.uuid, req.body);
         res.status(StatusCodes.NO_CONTENT).send();
     } catch (error) {
         next(error);
