@@ -1,22 +1,34 @@
 {
     "client": "Thunder Client",
     "collectionName": "projeto-infnet-bck-node-sql",
-    "dateExported": "2023-06-03T14:38:19.417Z",
+    "dateExported": "2023-06-05T00:22:42.178Z",
     "version": "1.1",
     "folders": [
         {
             "_id": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
-            "name": "Alunos",
+            "name": "Students",
             "containerId": "",
             "created": "2023-06-03T13:51:39.920Z",
-            "sortNum": 10000
+            "sortNum": 10000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiJ9.YmlhNEBlbWFpbC5jb20.7TNgB5wGvhXYzSzDQNGq595FVbssrH89fosVDrDlwwY"
+                }
+            }
         },
         {
             "_id": "3ecc88a1-d219-497c-84b4-90cb203a7438",
-            "name": "Cursos",
+            "name": "Courses",
             "containerId": "",
             "created": "2023-06-03T14:19:58.340Z",
-            "sortNum": 30000
+            "sortNum": 30000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiJ9.YmlhNEBlbWFpbC5jb20.7TNgB5wGvhXYzSzDQNGq595FVbssrH89fosVDrDlwwY"
+                }
+            }
         }
     ],
     "requests": [
@@ -25,16 +37,16 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "post",
-            "url": "http://localhost:3333/alunos",
+            "url": "http://localhost:3333/students",
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-03T13:51:39.920Z",
-            "modified": "2023-06-03T13:57:38.685Z",
+            "modified": "2023-06-04T16:29:04.675Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nome\": \"Bia\",\n  \"email\": \"bia4@email.com\",\n  \"dataNascimento\": \"05/09/1989\"\n}",
+                "raw": "{\n  \"name\": \"Bia\",\n  \"email\": \"bia4@email.com\",\n  \"password\": \"123456\",\n  \"birthDate\": \"05/09/1989\"\n}",
                 "form": []
             },
             "tests": []
@@ -44,16 +56,35 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "post",
-            "url": "http://localhost:3333/cursos",
+            "url": "http://localhost:3333/courses",
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-03T14:19:58.341Z",
-            "modified": "2023-06-03T14:21:56.289Z",
+            "modified": "2023-06-04T13:45:37.217Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"descricao\": \"Curso 1\",\n  \"professor\": \"bia\",\n  \"duracao\": 10\n}",
+                "raw": "{\n  \"description\": \"Curso 1\",\n  \"teacher\": \"bia\",\n  \"length\": 10\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8ad8cae1-b854-4135-baf0-443892382000",
+            "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
+            "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
+            "name": "Login",
+            "url": "http://localhost:3333/login",
+            "method": "POST",
+            "sortNum": 11250,
+            "created": "2023-06-04T20:31:12.035Z",
+            "modified": "2023-06-04T20:57:57.327Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"bia4@email.com\",\n  \"password\": \"123456\"\n}",
                 "form": []
             },
             "tests": []
@@ -63,16 +94,16 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "put",
-            "url": "http://localhost:3333/alunos/4d88a4be-4478-4f6b-8684-46f7dd680c83",
+            "url": "http://localhost:3333/students/4d88a4be-4478-4f6b-8684-46f7dd680c83",
             "method": "PUT",
             "sortNum": 12500,
             "created": "2023-06-03T13:51:39.922Z",
-            "modified": "2023-06-03T13:53:29.122Z",
+            "modified": "2023-06-04T11:34:28.131Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"nome\": \"Marina Moreira\",\n    \"email\": \"Marina33@bol.com.br\",\n    \"idade\": 21,\n    \"departamento\": \"Sapatos\"\n}",
+                "raw": "{\n  \"name\": \"Bia\",\n  \"email\": \"bia4@email.com\",\n  \"birthDate\": \"05/09/1989\"\n}",
                 "form": []
             },
             "tests": []
@@ -82,18 +113,46 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "put",
-            "url": "http://localhost:3333/cursos/4d88a4be-4478-4f6b-8684-46f7dd680c83",
+            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83",
             "method": "PUT",
             "sortNum": 12500,
             "created": "2023-06-03T14:19:58.342Z",
-            "modified": "2023-06-03T14:22:05.625Z",
+            "modified": "2023-06-04T13:43:36.750Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"descricao\": \"Curso 1\",\n  \"professor\": \"bia\",\n  \"duracao\": 10\n}",
+                "raw": "{\n  \"description\": \"Curso 1\",\n  \"teacher\": \"bia\",\n  \"length\": 10\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "5a1aab36-60d8-4761-9a93-c98d7b231f08",
+            "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
+            "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
+            "name": "subscribe",
+            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83/subscribe",
+            "method": "PATCH",
+            "sortNum": 13750,
+            "created": "2023-06-04T10:35:06.555Z",
+            "modified": "2023-06-04T13:15:10.479Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "caea4d7b-a6cc-4d63-9077-bb3504c4d614",
+            "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
+            "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
+            "name": "unsubscribe",
+            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83/unsubscribe",
+            "method": "PATCH",
+            "sortNum": 14375,
+            "created": "2023-06-04T10:40:25.643Z",
+            "modified": "2023-06-04T13:15:19.092Z",
+            "headers": [],
+            "params": [],
             "tests": []
         },
         {
@@ -101,11 +160,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "delete",
-            "url": "http://localhost:3333/alunos/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/students/176a44ba-524b-4df0-8242-93dc8d43c4d7",
             "method": "DELETE",
             "sortNum": 15000,
             "created": "2023-06-03T13:51:39.924Z",
-            "modified": "2023-06-03T13:53:33.649Z",
+            "modified": "2023-06-04T11:32:15.235Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -115,11 +174,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "delete",
-            "url": "http://localhost:3333/cursos/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/courses/176a44ba-524b-4df0-8242-93dc8d43c4d7",
             "method": "DELETE",
             "sortNum": 15000,
             "created": "2023-06-03T14:19:58.343Z",
-            "modified": "2023-06-03T14:20:30.919Z",
+            "modified": "2023-06-04T13:16:26.772Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -129,11 +188,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "getAll",
-            "url": "http://localhost:3333/alunos",
+            "url": "http://localhost:3333/students",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-06-03T13:51:39.926Z",
-            "modified": "2023-06-03T13:53:37.206Z",
+            "modified": "2023-06-04T11:32:25.621Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -143,11 +202,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "getAll",
-            "url": "http://localhost:3333/cursos",
+            "url": "http://localhost:3333/courses",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-06-03T14:19:58.344Z",
-            "modified": "2023-06-03T14:20:36.434Z",
+            "modified": "2023-06-04T13:16:41.092Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -157,11 +216,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "getUuid",
-            "url": "http://localhost:3333/alunos/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/students/176a44ba-524b-4df0-8242-93dc8d43c4d7",
             "method": "GET",
             "sortNum": 30000,
             "created": "2023-06-03T13:53:40.790Z",
-            "modified": "2023-06-03T13:54:26.111Z",
+            "modified": "2023-06-04T11:32:34.742Z",
             "headers": [],
             "params": [],
             "tests": []
