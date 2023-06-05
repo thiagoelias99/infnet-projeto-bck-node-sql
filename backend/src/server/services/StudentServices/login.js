@@ -1,15 +1,11 @@
-const { JWTService } = require("../JWTServices")
+const { sign } = require("../JWTServices")
 
 const login = async (email, password) => {
-    const jwt = JWTService.sign(email)
-    console.log(jwt)
-    const decodedData = JWTService.verify(jwt)
-    console.log(decodedData)
+    const jwt = sign(email)
 
     return (
         {
             jwt,
-            decodedData
         }
     );
 };

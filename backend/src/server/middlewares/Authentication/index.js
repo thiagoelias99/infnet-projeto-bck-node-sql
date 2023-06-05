@@ -4,19 +4,21 @@ const { JWTError } = require("../../../errors")
 const authentication = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {
-        throw new JWTError("Authorization not found in request header")
+        return next(new JWTError("Authorization not found in request header"))
     }
 
     const [type, token] = authorization.split(" ");
     if (type !== "Bearer") {
-        throw new JWTError("Invalid Token")
+        return next(new JWTError("Invalid Token"))
     }
 
-    req.headers.userEmail = JWTServices.verify(token);
-
-    return next();
+    try {
+        const decodedData = JWTServices.verify(token);
+        req.headers.userEmail = decodedData
+        return next();
+    } catch (error) {
+        return next(new JWTError("Invalid Token"))
+    }
 };
 
-module.exports = {
-    authentication
-}
+module.exports = authentication;
