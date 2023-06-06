@@ -4,7 +4,8 @@ const Joi = require("joi");
 const {
     EmailError,
     IdError,
-    JWTError
+    JWTError,
+    LoginError
 } = require("../../../errors");
 
 const errorHandler = (err, req, res, next) => {
@@ -18,6 +19,10 @@ const errorHandler = (err, req, res, next) => {
     if (err instanceof IdError) { res.status(StatusCodes.BAD_REQUEST).json({ message: err.message }); return; }
     
     if (err instanceof JWTError) { res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message }); return; }
+
+    if (err instanceof LoginError) { 
+        console.log("asdasdsa")
+        res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message }); return; }
 
     console.log("Servidor rodando...");
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
