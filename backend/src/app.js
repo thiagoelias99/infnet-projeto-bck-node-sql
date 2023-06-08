@@ -1,5 +1,6 @@
 const server = require("./server");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
+const databaseConnection = require("./databases/sequelize/connection")
 
 dotenv.config()
 
