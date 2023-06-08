@@ -23,7 +23,7 @@ checkConnection();
 
 
 
-async function checkConnection(){
+async function checkConnection() {
     try {
         await createDatabase()
         sequelize.authenticate()
@@ -45,13 +45,11 @@ async function createDatabase() {
     let conn;
     try {
         conn = await pool.getConnection();
-        await conn.query(`CREATE DATABASE IF NOT EXISTS ${dbConfig.database};`);
-        console.log(`Created database: ${dbConfig.database}`)
-
+        result = await conn.query(`CREATE DATABASE IF NOT EXISTS ${dbConfig.database};`);
     }
-    // catch (error) {
-    //     console.log(error);
-    // }
+    catch (error) {
+        console.log(error);
+    }
     finally {
         if (conn) conn.release();
     }
