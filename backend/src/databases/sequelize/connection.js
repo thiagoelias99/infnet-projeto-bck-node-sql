@@ -21,8 +21,6 @@ const sequelize = new Sequelize(dbConfig)
 
 checkConnection();
 
-
-
 async function checkConnection() {
     try {
         await createDatabase()
@@ -54,6 +52,5 @@ async function createDatabase() {
         if (conn) conn.release();
     }
 }
-
 
 module.exports = sequelize

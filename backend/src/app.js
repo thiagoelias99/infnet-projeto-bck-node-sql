@@ -1,11 +1,18 @@
 const server = require("./server");
 const dotenv = require("dotenv");
-const databaseConnection = require("./databases/sequelize/connection")
+// const databaseConnection = require("./databases/sequelize/connection")
+// const Students = require("./databases/sequelize/Entities/Student")
+const databaseConfiguration = require("./databases/sequelize/relations")
 
 dotenv.config()
 
 function startApp() {
-    server;
+    // Students.sync({ force: false })
+    //     .then(() => {
+    //         server;
+    //     })
+    databaseConfiguration
+    server
 }
 
 try {
