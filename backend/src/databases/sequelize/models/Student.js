@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Student extends Model {
     static associate(models) {
-      Student.belongsToMany(models.Course, {through: "StudentsCourses"})
+      Student.belongsToMany(models.Course, { through: "StudentsCourses" })
     }
   }
   Student.init(
@@ -36,7 +36,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Student',
-      paranoid: true
+      paranoid: true,
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "password"] }
+      },
+      scopes: {
+        withPassword: { attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] } },
+      }
     });
   return Student;
 };

@@ -17,12 +17,12 @@ class StudentDAO extends BaseDAO {
 
     async getRegisterByUuid(uuid) {
         return Student.findByPk(uuid, {
-            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "password"] },
+            // attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "password"] },
             include: [
                 {
                     model: Course,
                     // as: "courses",
-                    attributes: {exclude: ["createdAt", "updatedAt", "deletedAt", "StudentsCourses"]},
+                    // attributes: {exclude: ["createdAt", "updatedAt", "deletedAt"]},
                     through: {attributes: []}
                 }
             ],
@@ -31,7 +31,7 @@ class StudentDAO extends BaseDAO {
 
     async login(email, password) {
         try {
-            const student = await Student.findOne({ where: { email } })
+            const student = await Student.scope("withPassword").findOne({ where: { email } })
 
             if (!student) throw new LoginError();
             if (!await CryptServices.verifyPassword(password, student.password)) throw new LoginError();
