@@ -59,6 +59,17 @@ class CourseController {
             next(error);
         }
     };
+
+    static async unsubscribe(req, res, next) {
+        try {
+            const { studentUuid } = req.headers
+            const { uuid } = req.params
+            await courseDAO.unsubscribeStudent(studentUuid, uuid);
+            res.status(StatusCodes.NO_CONTENT).send();
+        } catch (error) {
+            next(error);
+        }
+    };
 };
 
 module.exports = CourseController;

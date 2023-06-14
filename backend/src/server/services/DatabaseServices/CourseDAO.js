@@ -1,5 +1,5 @@
 const BaseDAO = require('./BaseDAO')
-const database = require('../../../databases/sequelize/models')
+const {Student, Course} = require('../../../databases/sequelize/models')
 const StudentDAO = require('./StudentDAO')
 // const { CryptServices } = require("../CryptServices")
 // const { sign } = require("../JWTServices")
@@ -17,6 +17,19 @@ class CourseDAO extends BaseDAO {
 
         if (student && course) {
             course.addStudent(student)
+        } else {
+            throw new Error("Can't add student to the course")
+        }
+    }
+
+    async unsubscribeStudent(studentUuid, courseUuid) {
+        // const studentDAO = new StudentDAO()
+        const student = await Student.findByPk(studentUuid)
+        // const student = await studentDAO.getRegisterByUuid(studentUuid)
+        const course = await Course.findByPk(courseUuid)
+
+        if (student && course) {
+            course.removeStudent(student)
         } else {
             throw new Error("Can't add student to the course")
         }

@@ -19,7 +19,7 @@ router.route(`${path}/:uuid`)
 router.route(`${path}/:uuid/subscribe`)
     .patch(Authentication, RequestValidator.params, CourseController.subscribe);
 
-// router.route(`${path}/:uuid/unsubscribe`)
-//     .patch(Authentication, RequestValidator.params, CourseController.unsubscribe);
+router.route(`${path}/:uuid/unsubscribe`)
+    .patch(Authentication, RequestValidator.params, CourseController.unsubscribe);
 
 module.exports = router;
