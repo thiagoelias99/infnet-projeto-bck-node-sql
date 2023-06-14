@@ -14,6 +14,10 @@ class StudentDAO extends BaseDAO {
         return database[this.modelName].create(student)
     }
 
+    async getRegisterByUuid(uuid) {
+        return database[this.modelName].findByPk(uuid)
+      }
+
     async login(email, password) {
         try {
             const student = await database[this.modelName].findOne({ where: { email } })
