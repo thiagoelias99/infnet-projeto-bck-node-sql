@@ -1,5 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
-const StudentDAO = require("../services/DatabaseServices/StudentDAO")
+const { StudentDAO } = require("../services/DatabaseServices")
 
 const studentDAO = new StudentDAO();
 

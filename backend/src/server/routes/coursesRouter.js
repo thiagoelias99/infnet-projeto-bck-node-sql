@@ -8,7 +8,7 @@ const path = "/courses"
 router.route(path)
     .all(Authentication)
     .post(RequestValidator.body, CourseController.post)
-    .get(CourseController.getAll);
+    .get(CourseController.get);
 
 router.route(`${path}/:uuid`)
     .all(RequestValidator.params, Authentication)
@@ -16,10 +16,10 @@ router.route(`${path}/:uuid`)
     .put(RequestValidator.body, CourseController.put)
     .delete(CourseController.del);
 
-router.route(`${path}/:uuid/subscribe`)
-    .patch(Authentication, RequestValidator.params, CourseController.subscribe);
+// router.route(`${path}/:uuid/subscribe`)
+//     .patch(Authentication, RequestValidator.params, CourseController.subscribe);
 
-router.route(`${path}/:uuid/unsubscribe`)
-    .patch(Authentication, RequestValidator.params, CourseController.unsubscribe);
+// router.route(`${path}/:uuid/unsubscribe`)
+//     .patch(Authentication, RequestValidator.params, CourseController.unsubscribe);
 
 module.exports = router;

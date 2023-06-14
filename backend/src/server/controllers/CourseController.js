@@ -1,0 +1,53 @@
+const { StatusCodes } = require("http-status-codes");
+const { CourseDAO } = require("../services/DatabaseServices")
+
+const courseDAO = new CourseDAO();
+
+class CourseController {
+    static async post(req, res, next) {
+        try {
+            const course = await courseDAO.createRegister(req.body);
+            res.status(StatusCodes.OK).json({ uuid: course.uuid });
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    static async get(req, res, next) {
+        try {
+            const courses = await courseDAO.getAllRegisters();
+            res.status(StatusCodes.OK).json(courses);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    static async getByUuid(req, res, next) {
+        try {
+            const course = await courseDAO.getRegisterByUuid(req.params.uuid);
+            res.status(StatusCodes.OK).json(course);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    static async del(req, res, next) {
+        try {
+            await courseDAO.deleteRegister(req.params.uuid);
+            res.status(StatusCodes.NO_CONTENT).send();
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    static async put(req, res, next) {
+        try {
+            await courseDAO.updateRegister(req.body, req.params.uuid);
+            res.status(StatusCodes.NO_CONTENT).send();
+        } catch (error) {
+            next(error);
+        }
+    };
+};
+
+module.exports = CourseController;
