@@ -2,6 +2,7 @@ const BaseDAO = require('./BaseDAO')
 const database = require('../../../databases/sequelize/models')
 const { CryptServices } = require("../CryptServices")
 const { sign } = require("../JWTServices")
+const { LoginError } = require("../../../errors")
 
 class StudentDAO extends BaseDAO {
     constructor() {

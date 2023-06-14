@@ -14,7 +14,7 @@ const authentication = async (req, res, next) => {
 
     try {
         const decodedData = JWTServices.verify(token);
-        req.headers.userEmail = decodedData
+        req.headers.studentUuid = decodedData
         return next();
     } catch (error) {
         return next(new JWTError("Invalid Token"))

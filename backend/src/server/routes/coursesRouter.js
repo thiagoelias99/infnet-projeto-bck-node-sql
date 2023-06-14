@@ -16,8 +16,8 @@ router.route(`${path}/:uuid`)
     .put(RequestValidator.body, CourseController.put)
     .delete(CourseController.del);
 
-// router.route(`${path}/:uuid/subscribe`)
-//     .patch(Authentication, RequestValidator.params, CourseController.subscribe);
+router.route(`${path}/:uuid/subscribe`)
+    .patch(Authentication, RequestValidator.params, CourseController.subscribe);
 
 // router.route(`${path}/:uuid/unsubscribe`)
 //     .patch(Authentication, RequestValidator.params, CourseController.unsubscribe);
