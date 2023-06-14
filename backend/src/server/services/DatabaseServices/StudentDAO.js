@@ -1,26 +1,37 @@
 const BaseDAO = require('./BaseDAO')
-const database = require('../../../databases/sequelize/models')
+const { Student, Course } = require('../../../databases/sequelize/models')
 const { CryptServices } = require("../CryptServices")
 const { sign } = require("../JWTServices")
 const { LoginError } = require("../../../errors")
 
+
 class StudentDAO extends BaseDAO {
     constructor() {
         super('Student')
-        //   this.matriculas = new Services('Matriculas')
     }
+
     async createRegister(student) {
         student.password = await CryptServices.hashPassword(student.password);
-        return database[this.modelName].create(student)
+        return Student.create(student)
     }
 
     async getRegisterByUuid(uuid) {
-        return database[this.modelName].findByPk(uuid)
-      }
+        return Student.findByPk(uuid, {
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "password"] },
+            include: [
+                {
+                    model: Course,
+                    // as: "courses",
+                    attributes: {exclude: ["createdAt", "updatedAt", "deletedAt", "StudentsCourses"]},
+                    through: {attributes: []}
+                }
+            ],
+        })
+    }
 
     async login(email, password) {
         try {
-            const student = await database[this.modelName].findOne({ where: { email } })
+            const student = await Student.findOne({ where: { email } })
 
             if (!student) throw new LoginError();
             if (!await CryptServices.verifyPassword(password, student.password)) throw new LoginError();
