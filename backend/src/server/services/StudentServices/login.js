@@ -1,17 +1,19 @@
 const { sign } = require("../JWTServices")
 const { CryptServices } = require("../CryptServices")
 const { LoginError } = require("../../../errors")
+const database = require("../../../databases/sequelize/models")
 
 const login = async (email, password) => {
     try {
-        const student = {
-            password: "123456",
-            uuid: "1e2b3159-e6cc-4a60-b82b-c80529f4906d"
-        };
+        const student = await database.Student.findOne({ where: { email } })
 
-        // if(CryptServices.verifyPassword(password, student.password)) throw new LoginError();
-        if (password != student.password) throw new LoginError();
+        // console.log(student)
+        if (!student) throw new LoginError();
+        console.log('aqui')
 
+        console.log(await CryptServices.verifyPassword(password, student.password))
+        if (!await CryptServices.verifyPassword(password, student.password)) throw new LoginError();
+        console.log('aqui2')
         const jwt = sign(student.uuid)
 
         return (

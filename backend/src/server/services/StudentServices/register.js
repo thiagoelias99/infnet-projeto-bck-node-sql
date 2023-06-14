@@ -1,12 +1,13 @@
 const uuid = require("uuid");
 const { CryptServices } = require("../CryptServices")
+const database = require("../../../databases/sequelize/models")
 
 const register = async (student) => {
     const studentUuid = uuid.v4();
-    student.password = await CryptServices.hashPassword(student.password)
-    console.log(`Aluno cadastrado uuid:${studentUuid}`)
-    console.log(student);
+    student.uuid = studentUuid;
+    student.password = await CryptServices.hashPassword(student.password);
 
+    await database.Student.create(student);
     return studentUuid;
 };
 

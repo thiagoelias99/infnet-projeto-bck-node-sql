@@ -1,11 +1,12 @@
 const { StatusCodes } = require("http-status-codes");
+const StudentDAO = require("../../services/DatabaseServices/StudentDAO")
 
-const { StudentServices } = require("../../services");
+const studentDAO = new StudentDAO();
 
 const post = async (req, res, next) => {
     try {
-        const result = await StudentServices.register(req.body);
-        res.status(StatusCodes.OK).json({ uuid: result });
+        const student = await studentDAO.createRegister(req.body);
+        res.status(StatusCodes.OK).json({ uuid: student.uuid });
     } catch (error) {
         next(error);
     }
