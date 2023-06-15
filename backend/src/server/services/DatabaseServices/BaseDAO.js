@@ -26,28 +26,9 @@ class BaseDAO {
       .update(data, { where: { uuid } }, transaction)
   }
 
-  //   async atualizaRegistros(dadosAtualizados, where, transacao = {}){
-  //     return database[this.modelName]
-  //       .update(dadosAtualizados, { where: { ...where } }, transacao)
-  //   }
-
   async deleteRegister(uuid) {
     return database[this.modelName].destroy({ where: { uuid } })
   }
-
-  //   async restauraRegistro(id) {
-  //     return database[this.modelName].restore({ where: { id: id } })
-  //   }
-
-  //   async consultaRegistroApagado(id) {
-  //     return database[this.modelName]
-  //       .findOne({ paranoid: false, where: { id: Number(id) } })
-  //   }
-
-  //   async encontraEContaRegistros(where = {}, agregadores) {
-  //     return database[this.modelName]
-  //       .findAndCountAll({ where: { ...where }, ...agregadores })
-  //   }
-}
+};
 
 module.exports = BaseDAO
