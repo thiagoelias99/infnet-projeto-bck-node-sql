@@ -1,4 +1,4 @@
-const { Student, Course, Login } = require("../../../models");
+const { Student, Course, Login } = require("./models");
 
 const body = (req, res, next) => {
     const { url, body } = req
