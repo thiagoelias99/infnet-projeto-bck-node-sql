@@ -1,5 +1,5 @@
 class IdError extends Error {
-    constructor(message = "Invalid ID") {
+    constructor(message = "Invalid Uuid") {
         super(message);
     }
 }

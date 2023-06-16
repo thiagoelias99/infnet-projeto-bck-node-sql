@@ -1,14 +1,13 @@
 const express = require("express");
-const router = express.Router();
 
 const StudentsRouter = require("./studentsRouter")
 const CoursesRouter = require("./coursesRouter")
-const Route404 = require("./404")
 const WelcomeRoute = require("./welcome")
-// const LoginRouter = require("./loginRouter")
+const Route404 = require("./404")
+
+const router = express.Router();
 
 router.use(WelcomeRoute);
-// router.use(LoginRouter);
 router.use(StudentsRouter);
 router.use(CoursesRouter);
 

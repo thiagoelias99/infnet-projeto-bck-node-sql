@@ -1,55 +1,37 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+const mariadb = require('mariadb');
 const Sequelize = require('sequelize');
 const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const dotenv = require("dotenv");
+dotenv.config()
 
-let sequelize = new Sequelize(
-  {
-    database: process.env.DATABASE_NAME || "infnet",
-    username: process.env.DATABASE_USERNAME || "root",
-    password: process.env.DATABASE_USER_PASSWORD || "root",
-    host: process.env.DATABASE_HOST || "localhost",
-    dialect: 'mariadb',
-    port: process.env.DATABASE_PORT || 3306,
-    define: {
-      timestamps: true,
-      underscored: true
-    }
+const dbConfig = {
+  database: process.env.DATABASE_NAME || "infnet_telias4",
+  username: process.env.DATABASE_USERNAME || "root",
+  password: process.env.DATABASE_USER_PASSWORD || "root",
+  host: process.env.DATABASE_HOST || "localhost",
+  dialect: 'mariadb',
+  port: process.env.DATABASE_PORT || 3306,
+  define: {
+    timestamps: true,
+    underscored: true
   }
-)
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-// } else {
-//   sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
+}
 
-// fs
-//   .readdirSync(__dirname)
-//   .filter(file => {
-//     return (
-//       file.indexOf('.') !== 0 &&
-//       file !== basename &&
-//       file.slice(-3) === '.js' &&
-//       file.indexOf('.test.js') === -1
-//     );
-//   })
-//   .forEach(file => {
-//     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-//     db[model.name] = model;
-//   });
+console.log(process.env.DATABASE_NAME);
+
+let sequelize = new Sequelize(dbConfig)
+
 const Student = require("./Student")(sequelize, Sequelize.DataTypes);
 const Course = require("./Course")(sequelize, Sequelize.DataTypes);
+
 const db = {
   Student,
   Course
 };
-  console.log(db)
 
+//Run associations
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -59,6 +41,33 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-sequelize.sync({ force: false });
+//Check database & Sequelize connection
+const pool = mariadb.createPool(
+  {
+    host: dbConfig.host,
+    port: dbConfig.port,
+    user: dbConfig.username,
+    password: dbConfig.password,
+    connectionLimit: 100
+  }
+)
+
+let conn;
+try {
+  pool.getConnection()
+    .then(connection => {
+      connection.query(`CREATE DATABASE IF NOT EXISTS ${dbConfig.database};`)
+    })
+    .then(() => {
+      sequelize.sync({ force: false });
+      console.log(`Database ${dbConfig.database} connection Ok :D`)
+    })
+}
+catch (error) {
+  console.log(error);
+}
+finally {
+  if (conn) conn.release();
+}
 
 module.exports = db;

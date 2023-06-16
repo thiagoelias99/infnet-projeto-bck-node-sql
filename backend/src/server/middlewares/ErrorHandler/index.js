@@ -9,7 +9,7 @@ const {
 } = require("../../../errors");
 
 const errorHandler = (err, req, res, next) => {
-    console.log("Error Handler");
+    console.log("Error Handler...");
     console.log(err);
     
     if (err instanceof Joi.ValidationError) { res.status(StatusCodes.BAD_REQUEST).json({ message: err.details[0].message }); return; }
@@ -21,11 +21,10 @@ const errorHandler = (err, req, res, next) => {
     if (err instanceof JWTError) { res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message }); return; }
 
     if (err instanceof LoginError) { 
-        console.log("asdasdsa")
         res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message }); return; }
 
-    console.log("Servidor rodando...");
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+    console.log("...Server is up...");
+    res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
 };
 
 module.exports = errorHandler;

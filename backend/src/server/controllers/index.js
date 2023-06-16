@@ -1,5 +1,3 @@
-//Para agrupar controllers
-
 const StudentController = require("./StudentController");
 const CourseController = require("./CourseController");
 

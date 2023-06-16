@@ -1,5 +1,3 @@
-//To group middlewares
-
 const RequestValidator = require("./RequestValidator");
 const Authentication = require("./Authentication");
 const errorHandler = require("./ErrorHandler");

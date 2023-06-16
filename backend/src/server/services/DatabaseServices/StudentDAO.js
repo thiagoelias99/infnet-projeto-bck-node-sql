@@ -1,8 +1,8 @@
-const BaseDAO = require('./BaseDAO')
 const { Student, Course } = require('../../../databases/sequelize/models')
 const { CryptServices } = require("../CryptServices")
-const { sign } = require("../JWTServices")
 const { LoginError } = require("../../../errors")
+const { sign } = require("../JWTServices")
+const BaseDAO = require('./BaseDAO')
 
 class StudentDAO extends BaseDAO {
     constructor() {
@@ -19,7 +19,7 @@ class StudentDAO extends BaseDAO {
             include: [
                 {
                     model: Course,
-                    through: {attributes: []}
+                    through: { attributes: [] }
                 }
             ],
         })

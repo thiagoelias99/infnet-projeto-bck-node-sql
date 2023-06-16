@@ -10,34 +10,37 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   }
-  Course.init({
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+  Course.init(
+    {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      courseHours: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      startDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      finishDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    courseHours: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    startDate: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-    finishDate: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-  }, {
-    sequelize,
-    modelName: 'Course',
-    defaultScope: {
-      attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+    {
+      sequelize,
+      modelName: 'Course',
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      }
     }
-  });
+  );
   return Course;
 };

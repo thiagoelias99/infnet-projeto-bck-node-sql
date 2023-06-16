@@ -10,19 +10,19 @@ const {
 const server = express();
 const port = 3333;
 
-// Configuração do middleware controle de Cors
+// CORS middleware configuration
 server.use(cors());
 
-// Configuração do middleware "parser de body"
+// Body Parser middleware configuration
 server.use(express.json());
 
-// Configuração do middleware de log
+// Log middleware configuration
 server.use(morgan('dev'));
 
-// Configuração de rotas
+// Routing configuration
 server.use(router);
 
-// Configuração de middleware de erros
+// Errors Handler middleware configuration
 server.use(errorHandler);
 
 server.listen(port, () => {

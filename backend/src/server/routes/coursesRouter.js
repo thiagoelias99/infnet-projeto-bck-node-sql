@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { RequestValidator, Authentication } = require("../middlewares");
 const { CourseController } = require("../controllers");
+
 const path = "/courses"
 
 router.route(path)
