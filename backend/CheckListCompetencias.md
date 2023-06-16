@@ -1,46 +1,24 @@
 ### **Competências**
-#### **1. Utilizar JavaScript no back-end com Node.js**
-- O aluno criou um projeto Node.js utilizando NPM?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/package.json>
-- O aluno realizou I/O utilizando Promises com Node.js?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/controllers/empregado/post.js>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/databases/writeJSON.js.js>
-- O aluno enviou e recebeu dados através de um servidor web?
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/index.js>
-- O aluno manipulou arquivos utilizando o módulo fs?
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/databases/writeJSON.js.js>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/databases/readJSON.js>	
+#### **1. Desenvolver a API em cima da arquitetura mais viável.**
+- O aluno conseguiu configurar seu SGBD corretamente?
+- O aluno criou o banco de dados dentro do SGBD?
+- O aluno criou as tabelas necessárias?
+- O aluno criou os relacionamentos necessários?
 
-#### **2. Desenvolver uma REST API com Express**
-- O aluno criou pelo menos quatro rotas em sua aplicação?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
-- O aluno utilizou os verbos e status HTTP de forma correta?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/controllers/empregado/post.js>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/middlewares/ErrorHandler/index.js>
-- O aluno criou pelo menos dois roteadores na estrutura da API?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/index.js>
-- O aluno utilizou pelo menos dois middlewares em seu projeto?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/index.js>
+#### **2. Desenvolver o modelo de banco de dados da aplicação.**
+- O aluno implementou os mapeamentos necessários?
+- O aluno criou as classes para mapeamento com as tabelas na base de dados?
+- O aluno representou os relacionamentos entre tabelas no mapeamento do ORM?
+- O aluno criou o módulo para devolver os modelos mapeados do banco de dados?
 
 #### **3. Manipular JSON**
-- O aluno utilizou pelo menos três arquivos JSON em seu projeto?
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/package.json>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/databases/Departamentos.json>
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/databases/Empregados.json>
-- O aluno criou um endpoint que edita um arquivo JSON?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
-- O aluno criou um endpoint que deleta um arquivo JSON?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
-- O aluno enviou, recebeu e manipulou JSON nos endpoints de sua API?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/backend/src/server/routes/empregados.js>
+- O aluno construiu repositório utilizando recursos do ORM?
+- O aluno construiu operações de consulta com filtros utilizando o ORM?
+- O aluno construiu operações para construção / Alteração de registros utilizando o ORM?
+- O aluno construiu operações para destruir registros utilizando o ORM?
 
-#### **4. Integrar o front-end em React com o back-end em Node.js**
-- O aluno utilizou um client http para consumir sua REST API?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/front-projeto/src/context/AppProvider.jsx>
-- O aluno consumiu um endpoint no seu front-end?	
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/front-projeto/src/context/AppProvider.jsx>    
-- O aluno renderiou alguma lista no front-end à partir dos dados de um endpoint?
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/front-projeto/src/components/ListaEmpregado/index.jsx>
-- O aluno realizou operações de manipulação de dados com POST, PUT e DELETE?
-    - <https://github.com/thiagoelias99/infnet-projeto-bck-express-node/blob/main/front-projeto/src/context/AppProvider.jsx>
+#### **Desenvolver a camada de autenticação e permissão da aplicação.**
+- O aluno removeu lógica de persistencia do serviço de negócio?
+- O aluno implementou os casos de uso utilizando os repositorios?
+- O aluno implementou os controladores fazendo utilização dos serviços?
+- O aluno construiu camada de configuração da injeção de dependência?
