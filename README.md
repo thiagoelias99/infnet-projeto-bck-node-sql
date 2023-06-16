@@ -31,47 +31,63 @@ npm start
 ## **Rotas**
 - <http://localhost:3333/>
     - **GET** -> Rota Inicial
-- <http://localhost:3333/empregados>
-    - **GET** -> Retorna todos empregados.
-    - **POST** -> Adiciona um empregado.
+- <http://localhost:3333/students>
+    - **POST** -> Adiciona um estudantes.
         ```
         {
-            "nome": "String + Obrigatório",
+            "name": "String + Obrigatório",
             "email": "String + Obrigatório + Único",
-            "salario": "Number + Obrigatório + Mínimo 1"
-            "idade": "Number + Obrigatório + Mínimo 16"
-            "departamento": "String + Opcional + Validado com Departamentos"
+            "password": "Number + Obrigatório + Mínimo 6" -> Cryptografado
+            "birthDate": "Date" + Obrigatório
         }
         ```
-- <http://localhost:3333/empregados/:id>
-    - **DELETE** -> Remove o empregado "*id*"
-    - **PUT** -> Atualiza informações do empregado "*id*"               
+    - **GET** -> Retorna todos estudantes.
+- <http://localhost:3333/empregados/:uuid>
+    - **GET** -> Retorna o estudante "*uuid*" e os cursos inscritos (***Requer autenticação com JWT***).
+    - **DELETE** -> Remove o estudante "*uuid*"
+    - **PUT** -> Atualiza informações do estudante "*uuid*"               
         ```
         {
-            "nome": "String + Obrigatório",
+            "name": "String + Obrigatório",
             "email": "String + Obrigatório + Único",
-            "salario": "Number + Obrigatório + Mínimo 1"
-            "idade": "Number + Obrigatório + Mínimo 16"
-            "departamento": "String + Opcional"
+            "password": "Number + Obrigatório + Mínimo 6"
+            "birthDate": "Date" + Obrigatório
         }
         ```
-- <http://localhost:3333/departamentos>
-    - **GET** -> Retorna todos departamentos.
-    - **POST** -> Adiciona um departamento.
+- <http://localhost:3333/login>
+    - **POST** -> Faz login e retorna JWT.
         ```
         {
-            "nome": "String + Obrigatório",
-            "cidade": "String + Obrigatório",
+            "email": "String + Obrigatório",
+            "password": "Number + Obrigatório + Mínimo 6"
         }
         ```
-- <http://localhost:3333/departamentos/:id>
-    - **DELETE** -> Remove o departamento "*id*"
-    - **PUT** -> Atualiza informações do departamento "*id*"               
+- <http://localhost:3333/courses>
+    - **POST** -> Adiciona um Curso.
         ```
         {
-            "nome": "String + Obrigatório",
-            "cidade": "String + Obrigatório",
+            "description": "String + Obrigatório",
+            "courseHours": "String + Obrigatório",
+            "startDate": "Date + Obrigatório",
+            "finishDate": "Date + Obrigatório"
         }
         ```
+- <http://localhost:3333/courses> ***Requer autenticação com JWT***.
+    - **GET** -> Retorna todos Cursos e os estudantes inscritos.
+- <http://localhost:3333/courses/:uuid>
+    - **DELETE** -> Remove o Curso "*uuid*"
+    - **PUT** -> Atualiza informações do Curso "*uuid*"               
+        ```
+        {
+            "description": "String + Obrigatório",
+            "courseHours": "String + Obrigatório",
+            "startDate": "Date + Obrigatório",
+            "finishDate": "Date + Obrigatório"
+        }
+        ```
+- <http://localhost:3333/courses/:uuid/subscribe> ***Requer autenticação com JWT***.
+    - **PATCH** -> Faz inscrição no curso. Considera uuid do estudante codificado no JWT.
+- <http://localhost:3333/courses/:uuid/unsubscribe> ***Requer autenticação com JWT***.
+    - **PATCH** -> Faz cancelamento da inscrição no curso. Considera uuid do estudante codificado no JWT.
 - <http://localhost:3333/*>
     - Qualquer Método -> Retorno rota inválida

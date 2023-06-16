@@ -7,12 +7,11 @@ const { CourseController } = require("../controllers");
 const path = "/courses"
 
 router.route(path)
-    .all(Authentication)
     .post(RequestValidator.body, CourseController.post)
-    .get(CourseController.get);
+    .get(Authentication, CourseController.get);
 
 router.route(`${path}/:uuid`)
-    .all(RequestValidator.params, Authentication)
+    .all(RequestValidator.params)
     .get(CourseController.getByUuid)
     .put(RequestValidator.body, CourseController.put)
     .delete(CourseController.del);

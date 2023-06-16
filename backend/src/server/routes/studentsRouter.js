@@ -10,11 +10,11 @@ router.route("/login")
 
 router.route(path)
     .post(RequestValidator.body, StudentController.post)
-    .get(Authentication, StudentController.get);
+    .get(StudentController.get);
 
 router.route(`${path}/:uuid`)
-    .all(RequestValidator.params, Authentication)
-    .get(StudentController.getByUuid)
+    .all(RequestValidator.params)
+    .get(Authentication, StudentController.getByUuid)
     .put(RequestValidator.body, StudentController.put)
     .delete(StudentController.del);
 module.exports = router;
