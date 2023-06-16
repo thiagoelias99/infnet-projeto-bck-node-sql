@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "projeto-infnet-bck-node-sql",
-    "dateExported": "2023-06-05T00:22:42.178Z",
+    "dateExported": "2023-06-16T19:08:35.685Z",
     "version": "1.1",
     "folders": [
         {
@@ -10,12 +10,7 @@
             "containerId": "",
             "created": "2023-06-03T13:51:39.920Z",
             "sortNum": 10000,
-            "settings": {
-                "auth": {
-                    "type": "bearer",
-                    "bearer": "eyJhbGciOiJIUzI1NiJ9.YmlhNEBlbWFpbC5jb20.7TNgB5wGvhXYzSzDQNGq595FVbssrH89fosVDrDlwwY"
-                }
-            }
+            "settings": {}
         },
         {
             "_id": "3ecc88a1-d219-497c-84b4-90cb203a7438",
@@ -23,12 +18,7 @@
             "containerId": "",
             "created": "2023-06-03T14:19:58.340Z",
             "sortNum": 30000,
-            "settings": {
-                "auth": {
-                    "type": "bearer",
-                    "bearer": "eyJhbGciOiJIUzI1NiJ9.YmlhNEBlbWFpbC5jb20.7TNgB5wGvhXYzSzDQNGq595FVbssrH89fosVDrDlwwY"
-                }
-            }
+            "settings": {}
         }
     ],
     "requests": [
@@ -41,12 +31,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-03T13:51:39.920Z",
-            "modified": "2023-06-04T16:29:04.675Z",
+            "modified": "2023-06-14T19:50:48.766Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Bia\",\n  \"email\": \"bia4@email.com\",\n  \"password\": \"123456\",\n  \"birthDate\": \"05/09/1989\"\n}",
+                "raw": "{\n  \"name\": \"Annie\",\n  \"email\": \"annie@email.com\",\n  \"password\": \"123456\",\n  \"birthDate\": \"05/09/1989\"\n}",
                 "form": []
             },
             "tests": []
@@ -60,12 +50,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-03T14:19:58.341Z",
-            "modified": "2023-06-04T13:45:37.217Z",
+            "modified": "2023-06-15T10:05:22.259Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"description\": \"Curso 1\",\n  \"teacher\": \"bia\",\n  \"length\": 10\n}",
+                "raw": "{\n  \"description\": \"Curso 4\",\n  \"courseHours\": 40,\n  \"startDate\": \"06/01/2023\",\n  \"finishDate\": \"07/01/2023\"\n}",
                 "form": []
             },
             "tests": []
@@ -79,12 +69,12 @@
             "method": "POST",
             "sortNum": 11250,
             "created": "2023-06-04T20:31:12.035Z",
-            "modified": "2023-06-04T20:57:57.327Z",
+            "modified": "2023-06-14T19:51:00.981Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"bia4@email.com\",\n  \"password\": \"123456\"\n}",
+                "raw": "{\n  \"email\": \"annie@email.com\",\n  \"password\": \"123456\"\n}",
                 "form": []
             },
             "tests": []
@@ -94,16 +84,16 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "put",
-            "url": "http://localhost:3333/students/4d88a4be-4478-4f6b-8684-46f7dd680c83",
+            "url": "http://localhost:3333/students/e7db6b82-dc04-4fcd-a15f-126630dad0e5",
             "method": "PUT",
             "sortNum": 12500,
             "created": "2023-06-03T13:51:39.922Z",
-            "modified": "2023-06-04T11:34:28.131Z",
+            "modified": "2023-06-14T17:29:30.652Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Bia\",\n  \"email\": \"bia4@email.com\",\n  \"birthDate\": \"05/09/1989\"\n}",
+                "raw": "{\n  \"name\": \"Giseli\",\n  \"email\": \"gi@email.com\",\n  \"password\": \"123abc\",\n  \"birthDate\": \"05/09/1989\"\n}",
                 "form": []
             },
             "tests": []
@@ -113,16 +103,16 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "put",
-            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83",
+            "url": "http://localhost:3333/courses/dea3edd5-27b1-4489-a575-bede087bc780",
             "method": "PUT",
             "sortNum": 12500,
             "created": "2023-06-03T14:19:58.342Z",
-            "modified": "2023-06-04T13:43:36.750Z",
+            "modified": "2023-06-14T17:52:52.167Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"description\": \"Curso 1\",\n  \"teacher\": \"bia\",\n  \"length\": 10\n}",
+                "raw": "{\n    \"description\": \"Curso 2\",\n    \"courseHours\": 22,\n    \"startDate\": \"2023-05-01\",\n    \"finishDate\": \"2023-06-01\"\n}",
                 "form": []
             },
             "tests": []
@@ -132,11 +122,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "subscribe",
-            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83/subscribe",
+            "url": "http://localhost:3333/courses/770d09ac-8f73-4cec-802b-2b7afc55da47/subscribe",
             "method": "PATCH",
             "sortNum": 13750,
             "created": "2023-06-04T10:35:06.555Z",
-            "modified": "2023-06-04T13:15:10.479Z",
+            "modified": "2023-06-15T10:06:50.329Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -146,11 +136,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "unsubscribe",
-            "url": "http://localhost:3333/courses/4d88a4be-4478-4f6b-8684-46f7dd680c83/unsubscribe",
+            "url": "http://localhost:3333/courses/fb6cdef0-4dec-4a49-974a-adfaf5bbc774/unsubscribe",
             "method": "PATCH",
             "sortNum": 14375,
             "created": "2023-06-04T10:40:25.643Z",
-            "modified": "2023-06-04T13:15:19.092Z",
+            "modified": "2023-06-14T21:16:39.013Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -160,11 +150,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "delete",
-            "url": "http://localhost:3333/students/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/students/e7db6b82-dc04-4fcd-a15f-126630dad0e5",
             "method": "DELETE",
             "sortNum": 15000,
             "created": "2023-06-03T13:51:39.924Z",
-            "modified": "2023-06-04T11:32:15.235Z",
+            "modified": "2023-06-14T17:31:28.211Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -174,11 +164,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "delete",
-            "url": "http://localhost:3333/courses/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/courses/770d09ac-8f73-4cec-802b-2b7afc55da47",
             "method": "DELETE",
             "sortNum": 15000,
             "created": "2023-06-03T14:19:58.343Z",
-            "modified": "2023-06-04T13:16:26.772Z",
+            "modified": "2023-06-15T10:07:15.740Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -216,11 +206,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "164585c2-fe0d-4726-b280-b47a11dd9ae4",
             "name": "getUuid",
-            "url": "http://localhost:3333/students/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/students/e7cccdd2-3b37-4895-bb52-1305f0bf3ed1",
             "method": "GET",
             "sortNum": 30000,
             "created": "2023-06-03T13:53:40.790Z",
-            "modified": "2023-06-04T11:32:34.742Z",
+            "modified": "2023-06-14T20:05:12.775Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -230,11 +220,11 @@
             "colId": "9dde1b6e-0017-4e93-bacb-c6af887055d2",
             "containerId": "3ecc88a1-d219-497c-84b4-90cb203a7438",
             "name": "getUuid",
-            "url": "http://localhost:3333/cursos/176a44ba-524b-4df0-8242-93dc8d43c4d7",
+            "url": "http://localhost:3333/courses/b2a084e4-6978-462d-8dbc-e844e29650c3",
             "method": "GET",
             "sortNum": 30000,
             "created": "2023-06-03T14:19:58.345Z",
-            "modified": "2023-06-03T14:20:39.747Z",
+            "modified": "2023-06-16T00:24:45.748Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -253,5 +243,11 @@
             "params": [],
             "tests": []
         }
-    ]
+    ],
+    "settings": {
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJhbGciOiJIUzI1NiJ9.ZTdjY2NkZDItM2IzNy00ODk1LWJiNTItMTMwNWYwYmYzZWQx.KBdp-3TcKEBxbtYyRTKPT76MozLtyV7OiZSrMNUVcEU"
+        }
+    }
 }
