@@ -7,7 +7,7 @@ class StudentController {
     static async post(req, res, next) {
         try {
             const student = await studentDAO.createRegister(req.body);
-            res.status(StatusCodes.OK).json({ uuid: student.uuid });
+            res.status(StatusCodes.CREATED).json({ uuid: student.uuid });
         } catch (error) {
             next(error);
         }
