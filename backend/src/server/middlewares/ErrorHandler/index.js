@@ -23,6 +23,9 @@ const errorHandler = (err, req, res, next) => {
     if (err instanceof LoginError) { 
         res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message }); return; }
 
+    if (err instanceof SyntaxError){
+        res.status(StatusCodes.BAD_REQUEST).json({ message: "Invalid body structure"})
+    }
     console.log("...Server is up...");
     res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
 };
