@@ -97,8 +97,7 @@
                   "type": "object",
                   "properties": {
                     "uuid": {
-                      "type": "string",
-                      "example": "c4bbe6a8-5827-4c45-8269-cb5ff3670eac"
+                      "type": "string"
                     }
                   }
                 }
@@ -113,8 +112,7 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "type": "string",
-                      "example": "Email already registered"
+                      "type": "string"
                     }
                   }
                 }
@@ -155,8 +153,7 @@
                       "type": "string"
                     },
                     "birthDate": {
-                      "type": "string",
-                      "format": "date"
+                      "type": "string"
                     },
                     "Courses": {
                       "type": "array",
@@ -187,20 +184,7 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Authorization not found in request header"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           }
         },
         "security": [
@@ -236,6 +220,23 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      }
+    },
+    "responses": {
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
