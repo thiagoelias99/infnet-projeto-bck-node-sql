@@ -1,8 +1,11 @@
+const { ValidationError } = require('sequelize');
+
 const { Student, Course } = require('../../../databases/sequelize/models')
 const { CryptServices } = require("../CryptServices")
 const { LoginError } = require("../../../errors")
 const { sign } = require("../JWTServices")
-const BaseDAO = require('./BaseDAO')
+const BaseDAO = require('./BaseDAO');
+const { EmailError } = require('../../../errors')
 
 class StudentDAO extends BaseDAO {
     constructor() {
@@ -10,8 +13,18 @@ class StudentDAO extends BaseDAO {
     }
 
     async createRegister(student) {
-        student.password = await CryptServices.hashPassword(student.password);
-        return Student.create(student)
+        try {
+            student.password = await CryptServices.hashPassword(student.password);
+            const studentDb = await Student.create(student)
+            return studentDb
+        } catch (error) {
+            if (error instanceof ValidationError) {
+                throw new EmailError()
+            } else {
+                throw error
+            }
+        }
+
     }
 
     async getRegisterByUuid(uuid) {
