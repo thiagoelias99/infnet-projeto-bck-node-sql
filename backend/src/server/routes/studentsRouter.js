@@ -10,11 +10,14 @@ router.route("/login")
 
 router.route(path)
     .post(RequestValidator.body, StudentController.post)
-    .get(StudentController.get);
+    .get(AdminAuthentication, StudentController.get);
 
 router.route(`${path}/:uuid`)
-    .all(RequestValidator.params, Authentication)
+    .all(RequestValidator.params, AdminAuthentication)
     .get(StudentController.getByUuid)
-    .put(AdminAuthentication, RequestValidator.body, StudentController.put)
-    .delete(AdminAuthentication, StudentController.del);
+    .put(RequestValidator.body, StudentController.put)
+    .delete(StudentController.del);
+
+router.route("/userInfo")
+    .get(Authentication, StudentController.getInfo)
 module.exports = router;

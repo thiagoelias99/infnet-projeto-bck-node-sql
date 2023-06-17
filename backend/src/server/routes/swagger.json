@@ -62,6 +62,34 @@
         }
       }
     },
+    "/userInfo":{
+      "get": {
+        "summary": "Returns student info and courses",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentWCourses"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
     "/students": {
       "post": {
         "summary": "Create a Student",
@@ -111,7 +139,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     },
     "/students/{uuid}": {
@@ -224,7 +257,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "get": {
         "summary": "Returns all courses",
@@ -305,7 +343,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "delete": {
         "summary": "Delete course by uuid",
@@ -316,7 +359,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     },
     "/courses/{uuid}/subscribe": {
@@ -551,7 +599,7 @@
             "type": "number"
           },
           "courseStatus": {
-            "type":"string"
+            "type": "string"
           }
         }
       }

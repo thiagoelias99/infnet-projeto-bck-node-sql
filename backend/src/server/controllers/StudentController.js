@@ -42,6 +42,16 @@ class StudentController {
         }
     };
 
+    static async getInfo(req, res, next) {
+        try {
+            const { studentUuid } = req.headers
+            const student = await studentDAO.getRegisterByUuid(studentUuid);
+            res.status(StatusCodes.OK).json(student);
+        } catch (error) {
+            next(error);
+        }
+    };
+
     static async del(req, res, next) {
         try {
             await studentDAO.deleteRegister(req.params.uuid);
