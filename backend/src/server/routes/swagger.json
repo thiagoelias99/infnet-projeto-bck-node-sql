@@ -25,6 +25,43 @@
     }
   ],
   "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login and returns JWT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jwt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
     "/students": {
       "post": {
         "summary": "Create a Student",
@@ -59,8 +96,7 @@
         }
       },
       "get": {
-        "summary": "Retorna todos os estudantes",
-        "description": "Descrição detalhada",
+        "summary": "Returns all students",
         "responses": {
           "200": {
             "description": "Success",
@@ -90,7 +126,7 @@
         }
       ],
       "get": {
-        "summary": "Retorna estudante",
+        "summary": "Returns student \"uuid\" data and courses",
         "responses": {
           "200": {
             "description": "Success",
@@ -204,30 +240,26 @@
         ]
       }
     },
-    "/login": {
-      "post": {
-        "summary": "Login and returns JWT",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Login"
-              }
-            }
-          }
-        },
+    "/courses/{uuid}": {
+      "parameters": [
+        {
+          "name": "uuid",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Return course \"uuid\"",
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "jwt": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/CourseComplete"
                 }
               }
             }
@@ -238,7 +270,121 @@
           "401": {
             "$ref": "#/components/responses/401"
           }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update course by uuid",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success. No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
         }
+      },
+      "delete": {
+        "summary": "Delete course by uuid",
+        "responses": {
+          "204": {
+            "description": "Success. No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
+      }
+    },
+    "/courses/{uuid}/subscribe": {
+      "parameters": [
+        {
+          "name": "uuid",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "Subscribe student to course",
+        "description": "Subscribe student to course \"uuid\". Considers student uuid from JWT",
+        "responses": {
+          "204": {
+            "description": "Success. No content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseComplete"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/courses/{uuid}/unsubscribe": {
+      "parameters": [
+        {
+          "name": "uuid",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "Unsubscribe student from the course",
+        "description": "Unsubscribe student from the course \"uuid\". Considers student uuid from JWT",
+        "responses": {
+          "204": {
+            "description": "Success. No content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseComplete"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     }
   },
