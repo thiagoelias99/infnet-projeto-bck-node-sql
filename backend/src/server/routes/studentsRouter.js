@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { RequestValidator, Authentication } = require("../middlewares");
+const { RequestValidator, Authentication, AdminAuthentication } = require("../middlewares");
 const path = "/students"
 const { StudentController } = require("../controllers")
 
@@ -13,8 +13,8 @@ router.route(path)
     .get(StudentController.get);
 
 router.route(`${path}/:uuid`)
-    .all(RequestValidator.params)
-    .get(Authentication, StudentController.getByUuid)
-    .put(RequestValidator.body, StudentController.put)
-    .delete(StudentController.del);
+    .all(RequestValidator.params, Authentication)
+    .get(StudentController.getByUuid)
+    .put(AdminAuthentication, RequestValidator.body, StudentController.put)
+    .delete(AdminAuthentication, StudentController.del);
 module.exports = router;

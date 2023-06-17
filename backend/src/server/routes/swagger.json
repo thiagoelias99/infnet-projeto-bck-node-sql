@@ -169,7 +169,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "delete": {
         "summary": "Delete student by uuid",
@@ -180,7 +185,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     },
     "/courses": {
@@ -488,16 +498,20 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": "string",
+            "example": "Curso de Backend - Nível 1"
           },
           "courseHours": {
-            "type": "number"
+            "type": "number",
+            "example": 20
           },
           "startDate": {
-            "type": "string"
+            "type": "string",
+            "example": "07/01/2023"
           },
           "finishDate": {
-            "type": "string"
+            "type": "string",
+            "example": "08/01/2023"
           }
         }
       },

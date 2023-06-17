@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
-const { RequestValidator, Authentication } = require("../middlewares");
+const { RequestValidator, Authentication, AdminAuthentication } = require("../middlewares");
 const { CourseController } = require("../controllers");
 
 const path = "/courses"
 
 router.route(path)
-    .post(RequestValidator.body, CourseController.post)
+    .post(AdminAuthentication, RequestValidator.body, CourseController.post)
     .get(Authentication, CourseController.get);
 
 router.route(`${path}/:uuid`)
     .all(RequestValidator.params)
-    .get(CourseController.getByUuid)
-    .put(RequestValidator.body, CourseController.put)
-    .delete(CourseController.del);
+    .get(Authentication, CourseController.getByUuid)
+    .put(AdminAuthentication,RequestValidator.body, CourseController.put)
+    .delete(AdminAuthentication, CourseController.del);
 
 router.route(`${path}/:uuid/subscribe`)
     .patch(Authentication, RequestValidator.params, CourseController.subscribe);
