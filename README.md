@@ -9,12 +9,23 @@
 npm install
  ```
 4. Executar o projeto
+5. A criação do database é feita automaticamento no SGDB se não existir.
 ```
 npm start
 ```
+**Obs**: O servidor está configurado para utilizar SGDB MariaDb.
 **Obs**: O servidor executa por padrão no endereço <http://localhost:3333/>.
 
-5. Acessar **<http://localhost:3333/>** para acessar documentação de rotas/endpopints.
+6. Acessar **<http://localhost:3333/>** para acessar documentação swagger com as rotas/endpoints.
+7. É utilizado JWT para autenticação. Retorno na rota ***"/login"***
+8. Para acesso de Administrador utilizar
+```
+{
+    "email": "admin@email.com",
+    "password": "Admin123"
+}
+```
+9. Rotas de gerenciamento de Student e Course só podem ser acessadas com usuário de Admin.
 
 ## **Versões**
 - Node.Js 18.12.1
