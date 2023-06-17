@@ -3,7 +3,6 @@ const { JWTError } = require("../../../errors")
 
 const AdminAuthentication = async (req, res, next) => {
     const { authorization } = req.headers;
-    console.log(req.headers)
     if (!authorization) {
         return next(new JWTError("Authorization not found in request header"))
     }

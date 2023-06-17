@@ -19,8 +19,6 @@ const dbConfig = {
   }
 }
 
-console.log(process.env.DATABASE_NAME);
-
 let sequelize = new Sequelize(dbConfig)
 
 const Student = require("./Student")(sequelize, Sequelize.DataTypes);

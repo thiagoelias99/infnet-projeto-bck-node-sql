@@ -1,4 +1,5 @@
 const database = require("../../../databases/sequelize/models")
+const { IdError } = require("../../../errors")
 
 class BaseDAO {
   constructor(modelName) {
@@ -14,7 +15,9 @@ class BaseDAO {
   }
 
   async getRegisterByUuid(uuid) {
-    return database[this.modelName].findByPk(uuid)
+    const register = await database[this.modelName].findByPk(uuid)
+    if (!register) { throw new IdError }
+    return register
   }
 
   async createRegister(data) {
@@ -22,12 +25,16 @@ class BaseDAO {
   }
 
   async updateRegister(data, uuid, transaction = {}) {
-    return database[this.modelName]
+    const register = await database[this.modelName]
       .update(data, { where: { uuid } }, transaction)
+    if (!register.uuid) { throw new IdError }
+    return register
   }
 
   async deleteRegister(uuid) {
-    return database[this.modelName].destroy({ where: { uuid } })
+    const register = database[this.modelName].destroy({ where: { uuid } })
+    if (!register.uuid) { throw new IdError }
+    return register
   }
 };
 

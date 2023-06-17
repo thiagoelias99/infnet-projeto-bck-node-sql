@@ -28,6 +28,7 @@
     "/login": {
       "post": {
         "summary": "Login and returns JWT",
+        "description": "Login user by email and password. Returns JWT for authentication",
         "requestBody": {
           "content": {
             "application/json": {
@@ -52,19 +53,14 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         }
       }
     },
-    "/userInfo":{
+    "/students/info": {
       "get": {
-        "summary": "Returns student info and courses",
+        "summary": "Returns current student data",
+        "description": "Returns current student info and courses. Require JWT authentication",
         "responses": {
           "200": {
             "description": "Success",
@@ -75,12 +71,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         },
         "security": [
@@ -103,8 +93,8 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -117,14 +107,12 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
           }
         }
       },
       "get": {
         "summary": "Returns all students",
+        "description": "Returns all students. Require JWT admin level",
         "responses": {
           "200": {
             "description": "Success",
@@ -159,7 +147,8 @@
         }
       ],
       "get": {
-        "summary": "Returns student \"uuid\" data and courses",
+        "summary": "Return a student by UUID",
+        "description": "Returns a student by UUID. Require JWT admin level",
         "responses": {
           "200": {
             "description": "Success",
@@ -170,12 +159,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         },
         "security": [
@@ -185,7 +168,8 @@
         ]
       },
       "put": {
-        "summary": "Update student by uuid",
+        "summary": "Update student by UUID",
+        "description": "Update a student by UUID. Require JWT admin level",
         "requestBody": {
           "content": {
             "application/json": {
@@ -196,11 +180,8 @@
           }
         },
         "responses": {
-          "204": {
-            "description": "Success. No Content"
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
+          "200": {
+            "description": "Success"
           }
         },
         "security": [
@@ -210,13 +191,37 @@
         ]
       },
       "delete": {
-        "summary": "Delete student by uuid",
+        "summary": "Delete student by UUID",
+        "description": "Delete a student by UUID. Require JWT admin level",
         "responses": {
-          "204": {
-            "description": "Success. No Content"
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/courses/info": {
+      "get": {
+        "summary": "Returns courses available",
+        "description": "Returns courses available for subscription. Require JWT authentication",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseComplete"
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -229,6 +234,7 @@
     "/courses": {
       "post": {
         "summary": "Create a Course",
+        "description": "Create a course. Require JWT admin level",
         "requestBody": {
           "content": {
             "application/json": {
@@ -239,8 +245,8 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -253,9 +259,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
           }
         },
         "security": [
@@ -266,6 +269,7 @@
       },
       "get": {
         "summary": "Returns all courses",
+        "description": "Returns all courses and students subscribed. Require JWT",
         "responses": {
           "200": {
             "description": "Success",
@@ -300,7 +304,8 @@
         }
       ],
       "get": {
-        "summary": "Return course \"uuid\"",
+        "summary": "Return course UUID",
+        "description": "Return a course by UUID. Require JWT",
         "responses": {
           "200": {
             "description": "Success",
@@ -311,12 +316,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         },
         "security": [
@@ -326,7 +325,8 @@
         ]
       },
       "put": {
-        "summary": "Update course by uuid",
+        "summary": "Update course by UUID",
+        "description": "Update a course by UUID. Require JWT admin level",
         "requestBody": {
           "content": {
             "application/json": {
@@ -337,11 +337,8 @@
           }
         },
         "responses": {
-          "204": {
-            "description": "Success. No Content"
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
+          "200": {
+            "description": "Success"
           }
         },
         "security": [
@@ -351,7 +348,8 @@
         ]
       },
       "delete": {
-        "summary": "Delete course by uuid",
+        "summary": "Delete course by UUID",
+        "description": "Delete a course by UUID. Require JWT admin level",
         "responses": {
           "204": {
             "description": "Success. No Content"
@@ -380,10 +378,10 @@
       ],
       "patch": {
         "summary": "Subscribe student to course",
-        "description": "Subscribe student to course \"uuid\". Considers student uuid from JWT",
+        "description": "Subscribe student to course UUID. Use student UUID from JWT",
         "responses": {
-          "204": {
-            "description": "Success. No content",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -391,12 +389,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         },
         "security": [
@@ -419,10 +411,10 @@
       ],
       "patch": {
         "summary": "Unsubscribe student from the course",
-        "description": "Unsubscribe student from the course \"uuid\". Considers student uuid from JWT",
+        "description": "Unsubscribe student from the course UUID. Use student UUID from JWT",
         "responses": {
-          "204": {
-            "description": "Success. No content",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -430,12 +422,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           }
         },
         "security": [

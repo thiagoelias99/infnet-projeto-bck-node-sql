@@ -1,7 +1,9 @@
 const moment = require('moment')
+const { Op } = require("sequelize");
 
 const { Student, Course } = require('../../../databases/sequelize/models')
 const BaseDAO = require('./BaseDAO')
+const { IdError } = require('../../../errors')
 
 class CourseDAO extends BaseDAO {
     constructor() {
@@ -15,7 +17,7 @@ class CourseDAO extends BaseDAO {
         if (student && course) {
             course.addStudent(student)
         } else {
-            throw new Error("Can't add student to the course")
+            throw new IdError
         }
     }
 
@@ -26,7 +28,7 @@ class CourseDAO extends BaseDAO {
         if (student && course) {
             course.removeStudent(student)
         } else {
-            throw new Error("Can't remove student from the course")
+            throw new IdError
         }
     }
 
@@ -39,6 +41,7 @@ class CourseDAO extends BaseDAO {
                 }
             ],
         })
+        if (!course) { throw new IdError }
         course.setDataValue("numberOfSubscribers", course.Students.length)
         course.setDataValue("courseStatus", this.getCourseStatus(course))
 
@@ -49,6 +52,30 @@ class CourseDAO extends BaseDAO {
         const courses = await Course.findAll(
             {
                 where: { ...where },
+                include: [
+                    {
+                        model: Student,
+                        attributes: ["uuid", "name"],
+                        through: { attributes: [] }
+                    }
+                ],
+            })
+        courses.forEach(course => {
+            course.setDataValue("numberOfSubscribers", course.Students.length)
+            course.setDataValue("courseStatus", this.getCourseStatus(course))
+        });
+
+        return courses
+    }
+
+    async getAllRegistersForStudent(where = {}) {
+        const courses = await Course.findAll(
+            {
+                where: {
+                    startDate: {
+                        [Op.gte]: new Date()
+                    }
+                },
                 include: [
                     {
                         model: Student,

@@ -10,10 +10,13 @@ router.route(path)
     .post(AdminAuthentication, RequestValidator.body, CourseController.post)
     .get(Authentication, CourseController.get);
 
+router.route(`${path}/info`)
+    .get(Authentication, CourseController.getInfo)
+
 router.route(`${path}/:uuid`)
     .all(RequestValidator.params)
     .get(Authentication, CourseController.getByUuid)
-    .put(AdminAuthentication,RequestValidator.body, CourseController.put)
+    .put(AdminAuthentication, RequestValidator.body, CourseController.put)
     .delete(AdminAuthentication, CourseController.del);
 
 router.route(`${path}/:uuid/subscribe`)

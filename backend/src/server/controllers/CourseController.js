@@ -22,6 +22,15 @@ class CourseController {
         }
     };
 
+    static async getInfo(req, res, next) {
+        try {
+            const courses = await courseDAO.getAllRegistersForStudent();
+            res.status(StatusCodes.OK).json(courses);
+        } catch (error) {
+            next(error);
+        }
+    };
+
     static async getByUuid(req, res, next) {
         try {
             const course = await courseDAO.getRegisterByUuid(req.params.uuid);
@@ -34,7 +43,7 @@ class CourseController {
     static async del(req, res, next) {
         try {
             await courseDAO.deleteRegister(req.params.uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+            res.sendStatus(StatusCodes.OK);
         } catch (error) {
             next(error);
         }
@@ -43,7 +52,7 @@ class CourseController {
     static async put(req, res, next) {
         try {
             await courseDAO.updateRegister(req.body, req.params.uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+            res.sendStatus(StatusCodes.OK);
         } catch (error) {
             next(error);
         }
@@ -53,8 +62,14 @@ class CourseController {
         try {
             const { studentUuid } = req.headers
             const { uuid } = req.params
-            await courseDAO.subscribeStudent(studentUuid, uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+
+            if (studentUuid == "MyAdmin:D") {
+                res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: "Not allowed for admin" })
+            } else {
+                await courseDAO.subscribeStudent(studentUuid, uuid);
+                res.sendStatus(StatusCodes.OK);
+            }
+
         } catch (error) {
             next(error);
         }
@@ -64,8 +79,14 @@ class CourseController {
         try {
             const { studentUuid } = req.headers
             const { uuid } = req.params
-            await courseDAO.unsubscribeStudent(studentUuid, uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+
+            if (studentUuid == "MyAdmin:D") {
+                res.status(StatusCodes.NOT_ACCEPTABLE).json({ message: "Not allowed for admin" })
+            } else {
+                await courseDAO.unsubscribeStudent(studentUuid, uuid);
+                res.sendStatus(StatusCodes.OK);
+            }
+
         } catch (error) {
             next(error);
         }

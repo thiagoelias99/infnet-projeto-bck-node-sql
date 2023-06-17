@@ -2,7 +2,7 @@ const { ValidationError } = require('sequelize');
 
 const { Student, Course } = require('../../../databases/sequelize/models')
 const { CryptServices } = require("../CryptServices")
-const { LoginError } = require("../../../errors")
+const { LoginError, IdError } = require("../../../errors")
 const { sign } = require("../JWTServices")
 const BaseDAO = require('./BaseDAO');
 const { EmailError } = require('../../../errors')
@@ -27,8 +27,24 @@ class StudentDAO extends BaseDAO {
 
     }
 
+    async updateRegister(student, uuid, transaction = {}) {
+        try {
+            student.password = await CryptServices.hashPassword(student.password);
+            student = await Student.update(student, { where: { uuid } }, transaction)
+            if (!student.uuid) { throw new IdError }
+            return student           
+        } catch (error) {
+            if (error instanceof ValidationError) {
+                throw new EmailError()
+            } else {
+                throw error
+            }
+        }
+      }
+
     async getRegisterByUuid(uuid) {
-        return Student.findByPk(uuid, {
+        
+        const student = await Student.findByPk(uuid, {
             include: [
                 {
                     model: Course,
@@ -36,6 +52,9 @@ class StudentDAO extends BaseDAO {
                 }
             ],
         })
+        if (!student) { throw new IdError }
+        return student
+
     }
 
     async login(email, password) {

@@ -45,8 +45,12 @@ class StudentController {
     static async getInfo(req, res, next) {
         try {
             const { studentUuid } = req.headers
-            const student = await studentDAO.getRegisterByUuid(studentUuid);
-            res.status(StatusCodes.OK).json(student);
+            if (studentUuid == "MyAdmin:D") {
+                res.status(StatusCodes.NOT_ACCEPTABLE).json({message: "Not allowed for admin"})
+            } else {
+                const student = await studentDAO.getRegisterByUuid(studentUuid);
+                res.status(StatusCodes.OK).json(student);
+            }
         } catch (error) {
             next(error);
         }
@@ -55,7 +59,7 @@ class StudentController {
     static async del(req, res, next) {
         try {
             await studentDAO.deleteRegister(req.params.uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+            res.sendStatus(StatusCodes.OK);
         } catch (error) {
             next(error);
         }
@@ -64,7 +68,7 @@ class StudentController {
     static async put(req, res, next) {
         try {
             await studentDAO.updateRegister(req.body, req.params.uuid);
-            res.status(StatusCodes.NO_CONTENT).send();
+            res.sendStatus(StatusCodes.OK);
         } catch (error) {
             next(error);
         }
