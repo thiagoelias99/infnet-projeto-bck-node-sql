@@ -37,21 +37,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "uuid": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string"
-                      },
-                      "birthDate": {
-                        "type": "string"
-                      }
-                    }
+                    "$ref": "#/components/schemas/Student"
                   }
                 }
               }
@@ -65,25 +51,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Thiago Elias"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "thiago@email.com"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "123456"
-                  },
-                  "birthDate": {
-                    "type": "string",
-                    "example": "09/15/2000"
-                  }
-                }
+                "$ref": "#/components/schemas/StudentCreate"
               }
             }
           }
@@ -97,21 +65,6 @@
                   "type": "object",
                   "properties": {
                     "uuid": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
                       "type": "string"
                     }
                   }
@@ -141,47 +94,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "uuid": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    },
-                    "birthDate": {
-                      "type": "string"
-                    },
-                    "Courses": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "uuid": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "courseHours": {
-                            "type": "number"
-                          },
-                          "startDate": {
-                            "type": "string"
-                          },
-                          "finishDate": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/StudentWCourses"
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -192,6 +111,37 @@
             "auth": []
           }
         ]
+      }
+    },
+    "/login":{
+      "post": {
+        "summary": "Login and returns JWT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jwt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -213,6 +163,83 @@
             "type": "string"
           }
         }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "thiago@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "StudentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Thiago Elias"
+          },
+          "email": {
+            "type": "string",
+            "example": "thiago@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "09/15/2000"
+          }
+        }
+      },
+      "StudentWCourses": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "Courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            }
+          }
+        }
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "courseHours": {
+            "type": "number"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "finishDate": {
+            "type": "string"
+          }
+        }
       }
     },
     "securitySchemes": {
@@ -223,8 +250,38 @@
       }
     },
     "responses": {
+      "400": {
+        "description": "Error: Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
       "401": {
-        "description": "Unauthorized",
+        "description": "Error: Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
         "content": {
           "application/json": {
             "schema": {
