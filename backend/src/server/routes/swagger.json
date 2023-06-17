@@ -77,7 +77,6 @@
           }
         }
       }
-
     },
     "/students/{uuid}": {
       "parameters": [
@@ -116,7 +115,7 @@
           }
         ]
       },
-      "put":{
+      "put": {
         "summary": "Update student by uuid",
         "requestBody": {
           "content": {
@@ -136,7 +135,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "summary": "Delete student by uuid",
         "responses": {
           "204": {
@@ -148,7 +147,64 @@
         }
       }
     },
-    "/login":{
+    "/courses": {
+      "post": {
+        "summary": "Create a Course",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns all courses",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseComplete"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/login": {
       "post": {
         "summary": "Login and returns JWT",
         "requestBody": {
@@ -279,6 +335,63 @@
           },
           "finishDate": {
             "type": "string"
+          }
+        }
+      },
+      "CourseCreate": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "courseHours": {
+            "type": "number"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "finishDate": {
+            "type": "string"
+          }
+        }
+      },
+      "CourseComplete": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "courseHours": {
+            "type": "number"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "finishDate": {
+            "type": "string"
+          },
+          "Students": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "numberOfSubscribers": {
+            "type": "number"
+          },
+          "courseStatus": {
+            "type":"string"
           }
         }
       }
