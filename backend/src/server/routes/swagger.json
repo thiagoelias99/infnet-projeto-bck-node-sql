@@ -1,23 +1,18 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "API de Exemplo",
-    "description": "Exemplo de utilização do Swagger",
+    "title": "API Infnet Projeto Backend Com Node + Express + Sql",
+    "description": "Api desenvolvida para o curso Backend com Node e SQL da InfNet",
     "version": "0.0.1",
-    "termsOfService": "http://www.google.com",
     "contact": {
       "name": "Thiago Elias",
       "email": "thiagoelias99@gmail.com",
       "url": "https://www.linkedin.com/in/eng-thiagoelias/"
-    },
-    "license": {
-      "name": "License: GPLv3",
-      "url": "https://www.gnu.org/licenses/quick-guide-gplv3.pt-br.html"
     }
   },
   "externalDocs": {
-    "description": "Documentação formal",
-    "url": "http://www.google.com"
+    "description": "Repositório do Projeto",
+    "url": "https://github.com/thiagoelias99/infnet-projeto-bck-node-sql"
   },
   "servers": [
     {
