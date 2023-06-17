@@ -26,25 +26,6 @@
   ],
   "paths": {
     "/students": {
-      "get": {
-        "summary": "Retorna todos os estudantes",
-        "description": "Descrição detalhada",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Student"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "post": {
         "summary": "Create a Student",
         "requestBody": {
@@ -71,9 +52,32 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retorna todos os estudantes",
+        "description": "Descrição detalhada",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
           }
         }
       }
+
     },
     "/students/{uuid}": {
       "parameters": [
@@ -111,6 +115,37 @@
             "auth": []
           }
         ]
+      },
+      "put":{
+        "summary": "Update student by uuid",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success. No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
+      },
+      "delete":{
+        "summary": "Delete student by uuid",
+        "responses": {
+          "204": {
+            "description": "Success. No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
       }
     },
     "/login":{
@@ -140,6 +175,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           }
         }
       }
