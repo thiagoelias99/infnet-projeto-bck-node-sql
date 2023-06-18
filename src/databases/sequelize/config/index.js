@@ -4,6 +4,7 @@ const mariadb = require('mariadb');
 const Sequelize = require('sequelize');
 const process = require('process');
 const dotenv = require("dotenv");
+const seed = require('../seeds/0001')
 dotenv.config()
 
 const dbConfig = {
@@ -21,8 +22,8 @@ const dbConfig = {
 
 let sequelize = new Sequelize(dbConfig)
 
-const Student = require("./Student")(sequelize, Sequelize.DataTypes);
-const Course = require("./Course")(sequelize, Sequelize.DataTypes);
+const Student = require("../models/Student")(sequelize, Sequelize.DataTypes);
+const Course = require("../models/Course")(sequelize, Sequelize.DataTypes);
 
 const db = {
   Student,
@@ -56,9 +57,15 @@ try {
     .then(connection => {
       connection.query(`CREATE DATABASE IF NOT EXISTS ${dbConfig.database};`)
     })
+    .then(async () => {
+      await sequelize.sync({ force: false })
+    })
     .then(() => {
-      sequelize.sync({ force: false });
       console.log(`Database ${dbConfig.database} connection Ok :D`)
+
+      if (process.env.RUN_SEED) {
+        seed(Student, Course)
+      }
     })
 }
 catch (error) {

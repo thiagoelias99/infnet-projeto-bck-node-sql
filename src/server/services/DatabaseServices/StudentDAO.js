@@ -1,6 +1,6 @@
 const { ValidationError } = require('sequelize');
 
-const { Student, Course } = require('../../../databases/sequelize/models')
+const { Student, Course } = require('../../../databases/sequelize/config')
 const { CryptServices } = require("../CryptServices")
 const { LoginError, IdError } = require("../../../errors")
 const { sign } = require("../JWTServices")

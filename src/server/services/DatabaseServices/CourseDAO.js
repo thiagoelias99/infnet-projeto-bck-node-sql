@@ -1,7 +1,7 @@
 const moment = require('moment')
 const { Op } = require("sequelize");
 
-const { Student, Course } = require('../../../databases/sequelize/models')
+const { Student, Course } = require('../../../databases/sequelize/config')
 const BaseDAO = require('./BaseDAO')
 const { IdError } = require('../../../errors')
 

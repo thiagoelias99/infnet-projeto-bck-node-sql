@@ -1,4 +1,4 @@
-const database = require("../../../databases/sequelize/models")
+const database = require("../../../databases/sequelize/config")
 const { IdError } = require("../../../errors")
 
 class BaseDAO {
