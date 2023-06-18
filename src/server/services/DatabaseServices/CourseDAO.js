@@ -79,7 +79,7 @@ class CourseDAO extends BaseDAO {
                 include: [
                     {
                         model: Student,
-                        attributes: ["uuid", "name"],
+                        attributes: ["name"],
                         through: { attributes: [] }
                     }
                 ],

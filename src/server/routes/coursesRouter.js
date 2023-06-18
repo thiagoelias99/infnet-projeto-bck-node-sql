@@ -15,7 +15,7 @@ router.route(`${path}/info`)
 
 router.route(`${path}/:uuid`)
     .all(RequestValidator.params)
-    .get(Authentication, CourseController.getByUuid)
+    .get(AdminAuthentication, CourseController.getByUuid)
     .put(AdminAuthentication, RequestValidator.body, CourseController.put)
     .delete(AdminAuthentication, CourseController.del);
 
