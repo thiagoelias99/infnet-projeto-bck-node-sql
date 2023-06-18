@@ -17,7 +17,7 @@ npm start
 **Obs**: O servidor executa por padrão no endereço <http://localhost:3333/>.
 
 6. Acessar **<http://localhost:3333/>** para acessar documentação swagger com as rotas/endpoints.
-7. É utilizado JWT para autenticação. Retorno na rota ***"/login"***
+7. É utilizado JWT para autenticação. Retorno na rota ***"/login"***. Utilizar o ***Authorize*** do swagger para inserir o JWT.
 8. Para acesso de Administrador utilizar
 ```
 {
