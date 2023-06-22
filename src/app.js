@@ -1,3 +1,4 @@
+const { SqlError } = require("mariadb");
 const server = require("./server");
 
 function startApp() {

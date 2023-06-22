@@ -8,7 +8,7 @@ const seed = require('../seeds/0001')
 dotenv.config()
 
 const dbConfig = {
-  database: process.env.DATABASE_NAME || "infnet_telias4",
+  database: process.env.DATABASE_NAME || "infnet_telias",
   username: process.env.DATABASE_USERNAME || "root",
   password: process.env.DATABASE_USER_PASSWORD || "root",
   host: process.env.DATABASE_HOST || "localhost",
