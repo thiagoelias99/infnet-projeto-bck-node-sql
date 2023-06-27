@@ -30,43 +30,43 @@ async function runSeed(Student, Course) {
             uuid: faker.string.uuid(),
             description: "Backend Nível 1",
             courseHours: 10,
-            startDate: "04/01/2023",
-            finishDate: "05/01/2023"
+            startDate: "06/01/2023",
+            finishDate: "07/01/2023"
         },
         {
             uuid: faker.string.uuid(),
             description: "Backend Nível 2",
             courseHours: 12,
-            startDate: "05/01/2023",
-            finishDate: "06/01/2023"
-        },
-        {
-            uuid: faker.string.uuid(),
-            description: "Backend Nível 3",
-            courseHours: 14,
-            startDate: "06/01/2023",
-            finishDate: "07/01/2023"
-        },
-        {
-            uuid: faker.string.uuid(),
-            description: "Frontend Nível 1",
-            courseHours: 12,
-            startDate: "06/01/2023",
-            finishDate: "07/01/2023"
-        },
-        {
-            uuid: faker.string.uuid(),
-            description: "Frontend Nível 2",
-            courseHours: 8,
             startDate: "07/01/2023",
             finishDate: "08/01/2023"
         },
         {
             uuid: faker.string.uuid(),
+            description: "Backend Nível 3",
+            courseHours: 14,
+            startDate: "09/01/2023",
+            finishDate: "10/01/2023"
+        },
+        {
+            uuid: faker.string.uuid(),
+            description: "Frontend Nível 1",
+            courseHours: 12,
+            startDate: "07/01/2023",
+            finishDate: "08/01/2023"
+        },
+        {
+            uuid: faker.string.uuid(),
+            description: "Frontend Nível 2",
+            courseHours: 8,
+            startDate: "09/01/2023",
+            finishDate: "10/01/2023"
+        },
+        {
+            uuid: faker.string.uuid(),
             description: "Frontend Nível 3",
             courseHours: 16,
-            startDate: "08/01/2023",
-            finishDate: "09/01/2023"
+            startDate: "10/01/2023",
+            finishDate: "11/01/2023"
         },
     ]
 

@@ -32,4 +32,3 @@ npm start
 
 ## **Versões**
 - Node.Js 18.12.1
-- React 18.2.0
